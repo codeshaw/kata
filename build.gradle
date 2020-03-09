@@ -16,8 +16,8 @@ repositories {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-  // The production code uses the SLF4J logging API at compile time
   implementation "org.slf4j:slf4j-api:${project.ext.slf4jVersion}"
+  implementation "org.slf4j:slf4j-jdk14:${project.ext.slf4jVersion}"
 
   testImplementation 'org.hamcrest:hamcrest:2.2'
   testImplementation("org.junit.jupiter:junit-jupiter-api:${project.ext.jupiterVersion}")
@@ -27,6 +27,7 @@ dependencies {
 
 test {
   useJUnitPlatform()
+  testLogging.showStandardStreams = true
 }
 
 jar {
