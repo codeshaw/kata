@@ -1,0 +1,36 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+sourceCompatibility = 1.11
+
+group 'com.codeshaw'
+version '1.0-SNAPSHOT'
+
+ext {
+  slf4jVersion = "1.7.25"
+  jupiterVersion = "5.6.0"
+}
+
+repositories {
+  mavenCentral()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+  // The production code uses the SLF4J logging API at compile time
+  implementation "org.slf4j:slf4j-api:${project.ext.slf4jVersion}"
+
+  testImplementation 'org.hamcrest:hamcrest:2.2'
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${project.ext.jupiterVersion}")
+  testImplementation("org.junit.jupiter:junit-jupiter-params:${project.ext.jupiterVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.ext.jupiterVersion}")
+}
+
+test {
+  useJUnitPlatform()
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'com.codeshaw.kata.Main'
+  }
+}
